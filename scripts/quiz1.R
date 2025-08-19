@@ -28,8 +28,9 @@ print("Tidy data has one variable per column; FES violates this") # segmentation
 
 # QUESTION 3: Download the Excel spreadsheet on Natural Gas Acquisition Program #
 
-fileURL2<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
-download.file(fileURL2,destfile = "C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/gas.xlsx") # established path and named new .csv file in working directory
+# Corrupt file: fileURL2<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
+# Corrupt file: download.file(fileURL2,destfile = "C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/gas.xlsx") # established path and named new .csv file in working directory
+# manually download file, place it in the data directory, and name the file 'gas.xlsx'.
 list.files("C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data") # check that the new file now exists in the specified directory.
 dateDownloaded.gas<-date()
 dateDownloaded.gas

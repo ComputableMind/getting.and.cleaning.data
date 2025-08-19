@@ -33,3 +33,9 @@ download.file(fileURL2,destfile = "C:/Users/bradp/Documents/data.science.special
 list.files("C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data") # check that the new file now exists in the specified directory.
 dateDownloaded.gas<-date()
 dateDownloaded.gas
+
+library(xlsx)
+gas.data<-read.xlsx("C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/gas.xlsx",sheetIndex=1,header=TRUE) # different from read.table()
+
+# QUESTION 3.1: Read rows 18-23 and columns 7-15 in R; assign to a variable called 'dat'. #
+

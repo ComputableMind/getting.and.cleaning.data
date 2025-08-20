@@ -36,7 +36,47 @@ dateDownloaded.gas<-date()
 dateDownloaded.gas
 
 library(xlsx)
-gas.data<-read.xlsx("C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/gas.xlsx",sheetIndex=1,header=TRUE) # different from read.table()
+gas.data<-read.xlsx("C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/gas.xlsx",sheetIndex=1,header=FALSE) # different from read.table()
 
 # QUESTION 3.1: Read rows 18-23 and columns 7-15 in R; assign to a variable called 'dat'. #
+# Next, find the value of the following: sum(dat$Zip*dat$Ext, na.rm=T) #
+
+dat<- gas.data %>%
+        slice(18:23) %>%
+        select(7:15)
+names(dat) <- dat[1,] # names the variables (columns) the observations in first row
+dat <- dat[-1,] # deletes the first row observation to remove the repeate of the variable names.
+
+# Convert the specific columns needed from character to numeric.
+dat$Zip <- as.numeric(dat$Zip)
+dat$Ext <- as.numeric(dat$Ext)
+
+sum(dat$Zip * dat$Ext, na.rm = TRUE) # answer: 36534720
+
+
+# QUESTION 4: Read the XML data on Baltimore restaurants: #
+# https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -45,7 +45,7 @@ dat<- gas.data %>%
         slice(18:23) %>%
         select(7:15)
 names(dat) <- dat[1,] # names the variables (columns) the observations in first row
-dat <- dat[-1,] # deletes the first row observation to remove the repeate of the variable names.
+dat <- dat[-1,] # deletes the first row observation to remove the repeat of the variable names.
 
 # Convert the specific columns needed from character to numeric.
 dat$Zip <- as.numeric(dat$Zip)

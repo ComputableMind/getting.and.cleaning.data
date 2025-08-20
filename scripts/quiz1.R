@@ -55,11 +55,17 @@ sum(dat$Zip * dat$Ext, na.rm = TRUE) # answer: 36534720
 
 
 # QUESTION 4: Read the XML data on Baltimore restaurants: #
-# https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml
+# https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml #
+# How many restaurants have zipcode 21231? #
 
+library(XML)
+fileURL2<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
+BalResto<- xmlTreeParse(sub("s","", fileURL2),useInternal=TRUE)
+rootNode<-xmlRoot(BalResto)
 
-
-
+# Number of restaurants in zipcode 21231:
+zip <- xpathSApply(rootNode, "//zipcode", xmlValue)
+sum(zip == 21231) # 127 restaurants
 
 
 

@@ -68,14 +68,18 @@ zip <- xpathSApply(rootNode, "//zipcode", xmlValue)
 sum(zip == 21231) # 127 restaurants
 
 
+# QUESTION 5: Load Idaho housing data, use fread command to load data, and determine
+# code that delivers the fastest user time #
 
+fileURL3<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
+download.file(fileURL3,destfile = "C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/housing2.csv")
+library(data.table)
+DT<-fread("C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/housing2.csv")
+DT
 
-
-
-
-
-
-
+system.time(mean(DT$pwgtp15,by=DT$SEX)) # option does not deliver fastest user time.
+system.time(sapply(split(DT$pwgtp15,DT$SEX),mean)) # option does not deliver fastest user time.
+system.time(DT[,mean(pwgtp15),by=SEX]) # option delivers the fastest user time
 
 
 

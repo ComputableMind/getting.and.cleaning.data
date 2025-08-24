@@ -26,4 +26,3 @@ cameraData<-read.table("./data/cameras.csv")
 head(cameraData)
 # try out read.table("./data/cameras.csv") to verify that more elements are needed to run code.
 cameraData<-read.table("./data/cameras.csv",sep=",",header = TRUE)
-

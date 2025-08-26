@@ -3,8 +3,8 @@
 # Peer review data #
 
 if(!file.exists("./data")) {dir.create("./data")}
-fileURL1 <- "https://dl.dropboxusercontent.com/u/7710864/data/reviews-apr29.csv"
-fileURL2 <- "https://dl.dropboxusercontent.com/u/7710864/data/solutions-apr29.csv"
+fileURL1 <- "https://raw.githubusercontent.com/DataScienceSpecialization/courses/refs/heads/master/03_GettingData/03_05_mergingData/data/reviews.csv"
+fileURL2 <- "https://raw.githubusercontent.com/DataScienceSpecialization/courses/refs/heads/master/03_GettingData/03_05_mergingData/data/solutions.csv"
 download.file(fileURL1,destfile="./data/reviews.csv")
 download.file(fileURL2,destfile="./data/solutions.csv")
 reviews <- read.csv("./data/reviews.csv"); solutions <- read.csv("./data/solutions.csv")

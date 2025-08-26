@@ -1,9 +1,9 @@
 ### Summarizing Data ###
 
-if(!file.exists("./scripts")){dir.create("./scripts")}
-# fileURL <- "https://data.baltimorecity.gov/api/views/k5ry-ef3g/rows.csv?accessType=DOWNLOAD" # broken link
-# download.file(fileURL,destfile="./scripts/restaurants.csv",method = "curl") # cannot use code because of broken link
-restData <- read.csv("C:/Users/bradp/Documents/data.science.specialization_coursera/getting.and.cleaning.data/data/restaurants.csv")
+if(!file.exists("./data")){dir.create("./data")}
+fileURL <- "https://raw.githubusercontent.com/DataScienceSpecialization/courses/refs/heads/master/03_GettingData/03_02_summarizingData/data/restaurants.csv" 
+download.file(fileURL,destfile="./data/restaurants.csv")
+restData <- read.csv("./data/restaurants.csv")
 
 # Look at a bit of the data #
 
@@ -61,9 +61,9 @@ xt
 
 # Flat tables #
 
-warpbreaks$replicate <- rep(1:9, len = 54)
-xt <- xtabs(breaks~.,data-warpbreaks)
-ftable(xt) # all the tables are summarized into one compact table.
+warpbreaks$replicate <- rep(1:9, length.out = 54)
+xt <- xtabs(breaks ~ ., data = warpbreaks)
+ftable(xt) # all the tables are summaras.numeric()ftable(xt) # all the tables are summarized into one compact table.
 
 # Size of a data set #
 

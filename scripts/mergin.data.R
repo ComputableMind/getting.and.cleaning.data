@@ -1,5 +1,8 @@
 ### Merging Data ####
 
+library(plyr)
+library(dplyr)
+
 # Peer review data #
 
 if(!file.exists("./data")) {dir.create("./data")}
@@ -16,15 +19,15 @@ head(reviews,2)
 # Important paraeters: x,y,by,by.x,by.y,all
 
 head(solutions,2)
-name(reviews)
+names(reviews)
 names(solutions)
 
 mergeData <- merge(reviews,solutions,by.x="solution_id",by.y="id",all=TRUE)
 
 # Default - merge all common column names #
 
-intersect(names(solutions),names(review))
-mergedData2 <- merge(review,solutions,all=TRUE)
+intersect(names(solutions),names(reviews))
+mergedData2 <- merge(reviews,solutions,all=TRUE)
 head(mergedData2)
 
 # Using join in the plyr package #
@@ -40,5 +43,5 @@ arrange(join(df1,df2),id)
 df1 <- data.frame(id=sample(1:10), x=rnorm(10))
 df2 <- data.frame(id=sample(1:10),y=rnorm(10))
 df3 <- data.frame(id=sample(1:10),z=rnorm(10))
-join_ll(dfList)
-
+dfList <- list(df1,df2,df3)
+join_all(dfList)

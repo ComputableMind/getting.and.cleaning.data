@@ -9,7 +9,7 @@ if(!file.exists("data")){dir.create("data")}
 # QUESTION 1 ###
 
 fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv" # Idaho housing 2006 microsurvey
-setwd("../data") # set working directory
+setwd("./data") # set working directory
 download.file(fileURL,destfile = "housing.csv") # download in established path and .csv file in working directory
 list.files("../data") 
 dateDownloaded.housing <- date() # specify when the data was downloaded. The dataset could change in the future, leading to different results.

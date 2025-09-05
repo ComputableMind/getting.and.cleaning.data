@@ -19,4 +19,9 @@ View(housing.data)
 
 # logical vector that identifies the households on greater than 10 acres who sold more than $10,000 worth of agriculture products.
 
-agricultureLogical <- 
+
+agricultureLogical <- housing.data[(housing.data$ACR == 3 & housing.data$AGS == 6 ),]
+  
+which(agricultureLogical)        
+        
+        

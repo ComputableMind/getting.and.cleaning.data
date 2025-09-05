@@ -1,4 +1,4 @@
-#### Quiz 3 ###
+############ Quiz 3 ############
 
 library(dplyr)
 library(plyr)
@@ -6,7 +6,7 @@ library(readr)
 library(tidyr)
 if(!file.exists("data")){dir.create("data")}
 
-# QUESTION 1 ###
+### QUESTION 1 ###
 
 fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv" # Idaho housing 2006 microsurvey
 setwd("./data") # set working directory
@@ -14,9 +14,29 @@ download.file(fileURL,destfile = "housing.csv") # download in established path a
 list.files("../data") 
 dateDownloaded.housing <- date() # specify when the data was downloaded. The dataset could change in the future, leading to different results.
 dateDownloaded.housing
-housing.data<-read.table("../data/housing.csv", sep = ",", header = TRUE, quote="") # Read the housing file in the current working directory
+housing.data <- read.table("../data/housing.csv", sep = ",", header = TRUE, quote="") # Read the housing file in the current working directory
 View(housing.data)
 
 # logical vector that identifies the households on greater than 10 acres who sold more than $10,000 worth of agriculture products.
 
-agricultureLogical <- 
+agricultureLogical <- housing.data[which(housing.data$ACR == 3 & housing.data$AGS == 6 ),]
+agricultureLogical    
+
+### QUESTION 2 ###
+  
+# Using the jpeg package read in the following picture of your instructor into R
+# https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg
+# Use the parameter native=TRUE. What are the 30th and 80th quantiles of the resulting data? (some Linux systems may produce an answer 638 different for the 30th quantile)
+
+
+library(jpeg)
+
+fileURL2 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg"
+setwd("./data") # set working directory, if necessary
+download.file(fileURL2, destfile = "jeff.jpg", mode = "wb") # "wb" literally means "writing binary." JPEG is a binary file, which is why the mode parameter must be explicitly set to "wb".
+list.files("../data")
+dateDownloaded.jeff <- date()
+dateDownloaded.jeff
+img <- readJPEG("jeff.jpg", native = TRUE) # the paramter, mode, also works in readJPEG. 
+str(img)
+quantile(img, probs = c(0.3,0.8))

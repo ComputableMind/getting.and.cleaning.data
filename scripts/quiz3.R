@@ -40,3 +40,27 @@ dateDownloaded.jeff
 img <- readJPEG("jeff.jpg", native = TRUE) # the paramter, mode, also works in readJPEG. 
 str(img)
 quantile(img, probs = c(0.3,0.8))
+
+### QUESTION 3 ###
+
+setwd("./data") # set working directory
+
+fileURL3 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+download.file(fileURL3,destfile = "GDP.csv") # download in established path and .csv file in working directory
+
+fileURL4 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
+download.file(fileURL4, destfile = "education.csv")
+
+list.files("../data")
+
+GDP <- read.csv("../data/GDP.csv"); education <- read.csv("../data/education.csv")
+
+dateDownloaded.GDP <- date() # specify when the data was downloaded. The dataset could change in the future, leading to different results.
+dateDownloaded.GDP
+
+head(GDP,2)
+head(education,2)
+
+names(GDP)
+names(education)
+

@@ -4,6 +4,7 @@ library(dplyr)
 library(plyr)
 library(readr)
 library(tidyr)
+library(data.table)
 if(!file.exists("data")){dir.create("data")}
 
 ### QUESTION 1 ###
@@ -41,26 +42,79 @@ img <- readJPEG("jeff.jpg", native = TRUE) # the paramter, mode, also works in r
 str(img)
 quantile(img, probs = c(0.3,0.8))
 
+
+
 ### QUESTION 3 ###
+
+# Load the Gross Domestic Product data for the 190 ranked countries in this data set:
+# https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv
+
+
+# Load the educational data from this data set:
+# https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv
+
+# Match the data based on the country shortcode. How many of the IDs match? Sort the data frame in descending order by GDP rank (so United States is last). What is the 13th country in the resulting data frame?
+  
+# Original data sources: 
+# http://data.worldbank.org/data-catalog/GDP-ranking-table
+# http://data.worldbank.org/data-catalog/ed-stats
+
+
 
 setwd("./data") # set working directory
 
 fileURL3 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
-download.file(fileURL3,destfile = "GDP.csv") # download in established path and .csv file in working directory
+download.file(fileURL3,destfile = "GDP.csv", method = "curl") # download in established path and .csv file in working directory
 
 fileURL4 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
-download.file(fileURL4, destfile = "education.csv")
+download.file(fileURL4, destfile = "education.csv", method = "curl")
 
 list.files("../data")
 
-GDP <- read.csv("../data/GDP.csv"); education <- read.csv("../data/education.csv")
+GDP <- fread(fileURL3, skip = 5, nrows = 190, select = c(1,2,4,5), col.names = c("CountryCode", "Rank", "Economy", "Total")) 
+GDP
 
-dateDownloaded.GDP <- date() # specify when the data was downloaded. The dataset could change in the future, leading to different results.
-dateDownloaded.GDP
+EDU <- fread(fileURL4)
+EDU
 
-head(GDP,2)
-head(education,2)
+GDP_EDU <- merge(GDP, EDU, by = 'CountryCode')
 
-names(GDP)
-names(education)
+GDP_EDU <- GDP_EDU %>% 
+  arrange(desc(Rank))
+
+View(GDP_EDU)
+
+nrow(GDP_EDU) # 189 matching IDs
+GDP_EDU[13,c(1,5)] # 13th rank is St. Kitts and Nevis
+
+
+
+### QUESTION 4 ###
+
+# What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

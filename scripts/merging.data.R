@@ -16,7 +16,7 @@ head(reviews,2)
 # Merging data - merge() #
 
 # Merges data frames
-# Important paraeters: x,y,by,by.x,by.y,all
+# Important parameters: x,y,by,by.x,by.y,all
 
 head(solutions,2)
 names(reviews)

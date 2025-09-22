@@ -23,6 +23,7 @@ names(reviews)
 names(solutions)
 
 mergeData <- merge(reviews,solutions,by.x="solution_id",by.y="id",all=TRUE)
+head(mergeData)
 
 # Default - merge all common column names #
 

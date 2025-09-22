@@ -32,7 +32,7 @@ head(mergedData2)
 
 # Using join in the plyr package #
 
-# Faster, but less full featured - defaults to left join, see help file for me.
+# Faster, but less full featured - defaults to left join, see help file.
 
 df1 <- data.frame(id=sample(1:10),x=rnorm(10))
 df2 <- data.frame(id=sample(1:10),y=rnorm(10))

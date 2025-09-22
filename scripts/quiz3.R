@@ -5,7 +5,8 @@ library(plyr)
 library(readr)
 library(tidyr)
 library(data.table)
-if(!file.exists("data")){dir.create("data")}
+
+if(!file.exists("data")){dir.create("data")} # do not use this script if you have already set "data" as your working directory.
 
 ### QUESTION 1 ###
 
@@ -60,14 +61,13 @@ quantile(img, probs = c(0.3,0.8))
 # http://data.worldbank.org/data-catalog/ed-stats
 
 
-
-setwd("./data") # set working directory
-
 fileURL3 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
 download.file(fileURL3,destfile = "GDP.csv", method = "curl") # download in established path and .csv file in working directory
 
 fileURL4 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
 download.file(fileURL4, destfile = "education.csv", method = "curl")
+
+setwd("./data") # set working directory
 
 list.files("../data")
 
@@ -93,9 +93,7 @@ GDP_EDU[13,c(1,5)] # 13th rank is St. Kitts and Nevis
 
 # What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?
 
-
-
-
+rank_avg <- GDP_EDU[,c("Rank", "")]
 
 
 

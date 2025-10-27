@@ -62,10 +62,10 @@ quantile(img, probs = c(0.3,0.8))
 
 
 fileURL3 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
-download.file(fileURL3,destfile = "GDP.csv", method = "curl") # download in established path and .csv file in working directory
+download.file(fileURL3,destfile = "GDP.csv") # download in established path and .csv file in working directory
 
 fileURL4 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
-download.file(fileURL4, destfile = "education.csv", method = "curl")
+download.file(fileURL4, destfile = "education.csv")
 
 setwd("./data") # set working directory
 
@@ -93,10 +93,23 @@ GDP_EDU[13,c(1,5)] # 13th rank is St. Kitts and Nevis
 
 # What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?
 
-rank_avg <- GDP_EDU[,c("Rank", "")]
+GDP_EDU[, Rank := as.numeric(Rank)]
 
+rank_avg <- GDP_EDU[
+  `Income Group` %in% c("High income: OECD", "High income: nonOECD"),
+  .(Avg_Rank = mean(Rank, na.rm = TRUE)),
+  keyby = `Income Group`
+]
 
+rank_avg
 
+### QUESTION 5 ### 
+
+# Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP?
+
+answer <- GDP_EDU[`Income Group` == "Lower middle income" & 
+                    Rank <= quantile(Rank, 0.2, na.rm = TRUE), .N]
+answer   # 5
 
 
 
